@@ -1,8 +1,8 @@
 # tournamenter-obr-checkin
 
-Plugin para o Tournamenter baseado no plugin regional da OBR.
+Plugin complementar para integrar o Tournamenter ao OBR Checkin.
 
-Esta variante usa o OBR Checkin como fonte:
+Ele deve ser usado junto com o plugin OBR original. O plugin OBR original continua responsavel pelas telas de pontuacao, regras e algoritmos. Este plugin adiciona apenas as funcoes de integracao com o Checkin:
 
 - Importacao de equipes: `https://obr.ioda.com.br/api/events/steps/participants`
 - Envio de notas: `https://obr.ioda.com.br/api/events/steps/score`

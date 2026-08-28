@@ -21,7 +21,7 @@
         <img src="obr.png" style="height: 32px; margin: 8px;">
       </div>
       <div class="navbar-text pull-left">
-        Importar/Exportar dados do OBR Checkin
+        Integração entre OBR Checkin e Tournamenter
       </div>
 
     </div>
@@ -31,11 +31,11 @@
 
     <!-- Importar equipes -->
     <div class="col-md-6" style="margin-top: 42px" ng-controller="ImportarCtrl">
-      <h2>Importar Equipes</h2>
+      <h2>Importar equipes presentes</h2>
       <hr/>
       <p>
         <small style="color: rgba(0,0,0,0.6);">
-          Importe todas as equipes do seu regional específico para o Tournamenter.
+          Importe para o Tournamenter somente as equipes que já tiveram presença confirmada no OBR Checkin.
         </small>
       <p>
 
@@ -43,7 +43,7 @@
       <div class="alert alert-success ng-cloak" ng-show="success" role="alert">{{success}}</div>
 
       <label>
-        Token do Evento para importar equipes:
+        Token da modalidade cadastrado no OBR Checkin:
       </label>
       <div class="form-group row">
         <div class="col-md-6 col-lg-12">
@@ -55,13 +55,13 @@
             ng-show="teamsToImport.$resolved && teamsToImport.length" 
             class="label label-success"
             style="font-size: 16px;">
-              {{teamsToImport.length}} Equipes
+              {{teamsToImport.teams.length}} equipes presentes
           </span>
           <span
             ng-show="teamsToImport.$resolved && !teamsToImport.teams.length" 
             class="label label-danger"
             style="font-size: 16px;">
-              Falha ao Carregar
+              Falha ao carregar
           </span>
           <span
             ng-show="teamsToImport && !teamsToImport.$resolved" 
@@ -88,7 +88,7 @@
           ng-click="diffTeams()"
           ng-disabled="!importEventToken || !teamsToImport || executing"
           class="btn btn-primary btn-sm btn-block">
-            Verificar Diferenças (passo 1)
+            Verificar diferenças (passo 1)
         </button>
       </div>
 
@@ -151,12 +151,12 @@
     <!-- Syncronização -->
     <div class="col-md-6" ng-controller="ExportarCtrl">
       <h2>
-        Envio de notas 
+        Sincronização de notas em tempo real
       </h2>
       <hr/>
       <p>
         <small style="color: rgba(0,0,0,0.6);">
-          Configure para habilitar o envio das pontuações automaticamente durante o torneio.
+          Envie automaticamente para o OBR Checkin as pontuações lançadas no Tournamenter.
         </small>
       <p>
 
@@ -186,7 +186,7 @@
                 type="checkbox">
             </span>
             <span class="input-group-addon" style="width: 95%;">
-              Habilitar/Desabilitar sincronização automática
+              Habilitar/desabilitar sincronização automática
             </span>
             <span class="input-group-btn">
               <button
@@ -203,7 +203,7 @@
 
         <!-- <div class="form-group row" ng-show="syncConfig.sync">
           <label>
-            URL de envio (Somente a organização nacional da OBR pode fornece-la)
+            URL de envio
           </label>
           <input
             type="text"

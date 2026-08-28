@@ -1,7 +1,7 @@
 {
   "name": "tournamenter-obr-checkin",
-  "version": "2026.1.0",
-  "description": "OBR Checkin para o Tournamenter. Importa somente equipes presentes e envia resultados para o OBR Checkin.",
+  "version": "2026.1.1",
+  "description": "Plugin complementar para integrar o Tournamenter ao OBR Checkin.",
   "main": "index.js",
   "repository": {
     "type": "git",

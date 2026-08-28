@@ -21,7 +21,7 @@ exports.init = function (app) {
     id:'obr-checkin-sync',
   }, exports.default), function (err, config){
     if (err) {
-      return console.log('Falha ao criar configuração da `obr-sync`!');
+      return console.log('Falha ao criar configuração da `obr-checkin-sync`!');
     }
 
     console.log(TAG, 'init:', config.sync ? 'Ligado' : 'Desligado')
@@ -32,13 +32,13 @@ exports.init = function (app) {
     id:'obr-checkin-last-sync',
   }, {}), function (err, config){
     if (err) {
-      return console.log('Falha ao criar configuração da `obr-last-sync`!');
+      return console.log('Falha ao criar configuração da `obr-checkin-last-sync`!');
     }
   })
 }
 
 /*
- * Handles the route /obr-sync
+ * Handles the route /obr-checkin-sync
  * Saves configs in the database, and update deamon to reflect new config
  */
 exports.updateConfig = function (req, res) {
@@ -81,18 +81,18 @@ exports.updateConfig = function (req, res) {
 exports.statusMenu = {
   path: '/obr-checkin-config',
   name: '',
-  badge: 'Sync: Inicializando...'
+  badge: 'Notas Checkin: Inicializando...'
 }
 
 exports.updateBadge = function () {
-  var badge = 'Sincronização OBR Checkin: '
+  var badge = 'Notas Checkin: '
 
   if (!exports.config.sync) {
-    badge += '<span style="color: #DDD"> 😴️ Desligado</span>'
+    badge += '<span style="color: #DDD">Desligado</span>'
   } else if (exports.error) {
-    badge += '<span style="color: #ff687d"> 👎 Falhou </span>'
+    badge += '<span style="color: #ff687d">Falhou</span>'
   } else {
-    badge += '<span style="color: #33EE30"> 👌 Ligado</span>'
+    badge += '<span style="color: #33EE30">Ligado</span>'
   }
 
   exports.statusMenu.badge = badge
