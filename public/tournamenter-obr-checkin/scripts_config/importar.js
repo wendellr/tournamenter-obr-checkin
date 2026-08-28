@@ -9,7 +9,7 @@ angular.module('app.importar', [])
   $scope.teamsToImport = null
   $scope.importLoadError = ''
 
-  $scope.$watchGroup(['importEventToken', 'importScope'], function () {
+  function loadTeamsToImport() {
     $scope.importLoadError = ''
     $scope.teamsToImport = null
 
@@ -21,7 +21,10 @@ angular.module('app.importar', [])
       var detail = err && err.data && err.data.detail ? err.data.detail : 'Não foi possível carregar as equipes deste token.'
       $scope.importLoadError = detail
     })
-  })
+  }
+
+  $scope.$watch('importEventToken', loadTeamsToImport)
+  $scope.$watch('importScope', loadTeamsToImport)
 
   $scope.actions = null
   $scope.progress = 0
