@@ -52,15 +52,22 @@
 
         <div class="col-md-6" style="margin-top: 8px;">
           <span
-            ng-show="teamsToImport.$resolved && teamsToImport.length" 
+            ng-show="teamsToImport.$resolved && !importLoadError && teamsToImport.teams.length" 
             class="label label-success"
             style="font-size: 16px;">
               {{teamsToImport.teams.length}} equipes presentes
           </span>
           <span
-            ng-show="teamsToImport.$resolved && !teamsToImport.teams.length" 
-            class="label label-danger"
+            ng-show="teamsToImport.$resolved && !importLoadError && !teamsToImport.teams.length" 
+            class="label label-default"
             style="font-size: 16px;">
+              Nenhuma equipe presente
+          </span>
+          <span
+            ng-show="teamsToImport.$resolved && importLoadError" 
+            class="label label-danger"
+            style="font-size: 16px;"
+            title="{{importLoadError}}">
               Falha ao carregar
           </span>
           <span
