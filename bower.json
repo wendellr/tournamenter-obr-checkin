@@ -1,7 +1,7 @@
 {
   "name": "tournamenter-obr-checkin",
   "description": "Plugin complementar para integrar o Tournamenter ao OBR Checkin",
-  "version": "2026.1.2",
+  "version": "2026.1.3",
   "authors": [
     "Ivan Seidel <ivan@tendadigital.net>"
   ],

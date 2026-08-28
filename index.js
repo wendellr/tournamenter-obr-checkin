@@ -34,8 +34,7 @@ module.exports = {
         },
       ],
       order: 7
-    },
-    SyncModule.statusMenu
+    }
   ],
 
   initialize: function(app){

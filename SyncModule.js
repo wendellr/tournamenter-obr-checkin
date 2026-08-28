@@ -75,27 +75,8 @@ exports.updateConfig = function (req, res) {
   })
 }
 
-/*
- * Controls the menu badge with the Sync status
- */
-exports.statusMenu = {
-  path: '/obr-checkin-config',
-  name: '',
-  badge: 'Notas Checkin: Inicializando...'
-}
-
 exports.updateBadge = function () {
-  var badge = 'Notas Checkin: '
-
-  if (!exports.config.sync) {
-    badge += '<span style="color: #DDD">Desligado</span>'
-  } else if (exports.error) {
-    badge += '<span style="color: #ff687d">Falhou</span>'
-  } else {
-    badge += '<span style="color: #33EE30">Ligado</span>'
-  }
-
-  exports.statusMenu.badge = badge
+  return
 }
 
 /*
@@ -193,7 +174,6 @@ exports.sync = function (config, next) {
         return next && next('Falha na sincronização. Retorno: ' + statusCode + ': ' + body)
       }
 
-      // Update badge
       exports.error = false; exports.updateBadge();
 
       // Update timestamp
