@@ -30,35 +30,35 @@ module.exports = {
 
   menus: [
     {
-      name: 'Plugin OBR',
+      name: 'OBR Checkin',
       childs: [
         {
-          path: '/tournamenter-obr',
+          path: '/tournamenter-obr-checkin',
           name: 'Pontuador',
         },
         {
-          path: '/obr-config',
+          path: '/obr-checkin-config',
           name: 'Configurar (Importar/Exportar)',
         },
         {
-          path: '/obr-desafio',
+          path: '/obr-checkin-desafio',
           name: 'Desafio Surpresa',
         },
         {
-          path: '/obr-rounds',
+          path: '/obr-checkin-rounds',
           name: 'Gerar Tabela de Horários',
         },
         {
-          path: '/ManualOBRTournamenter.pdf',
+          path: '/ManualOBRCheckinTournamenter.pdf',
           name: 'Manual (.pdf)',
         },
       ],
       order: 6
     },
-    // Realtime badge for Sincronization with Sistema Olimpo
+    // Realtime badge for Sincronization with OBR Checkin
     SyncModule.statusMenu
-    // {name: 'Pontuador', path: '/tournamenter-obr', order: 6},
-    // {name: 'Importador Sistema Olimpo', path: '/tournamenter-obr/importar.html', order: 7},
+    // {name: 'Pontuador', path: '/tournamenter-obr-checkin', order: 6},
+    // {name: 'Importador OBR Checkin', path: '/tournamenter-obr-checkin/importar.html', order: 7},
   ],
 
   initialize: function(app){
@@ -87,34 +87,34 @@ module.exports = {
     TableModel.attributes.headerTeam.defaultsTo = 'Equipe';
 
     // Update Default Tournamenter Logo
-    app.config.appLogo = path.join(__dirname, '/public/tournamenter-obr/obr.png')
+    app.config.appLogo = path.join(__dirname, '/public/tournamenter-obr-checkin/obr.png')
 
     // Add views path to view engine
-    var viewsFolder = path.join(__dirname, '/public/tournamenter-obr')
+    var viewsFolder = path.join(__dirname, '/public/tournamenter-obr-checkin')
     var views = app.server.get('views').push(viewsFolder)
 
     // Add route to change configs/get
-    app.server.all('/obr-sync',       auth, SyncModule.updateConfig)
-    app.server.all('/obr-last-sync',  auth, SyncModule.getLastSync)
+    app.server.all('/obr-checkin-sync',       auth, SyncModule.updateConfig)
+    app.server.all('/obr-checkin-last-sync',  auth, SyncModule.getLastSync)
 
     // Render Configuration screen
-    app.server.get('/obr-config',     auth, function (req, res) {
-      return res.render('obr-config', { path: req.route.path });
+    app.server.get('/obr-checkin-config',     auth, function (req, res) {
+      return res.render('obr-checkin-config', { path: req.route.path });
     })
 
     // Render desafio screen
-    app.server.get('/obr-desafio',    auth, function (req, res) {
-      return res.render('obr-desafio', { path: req.route.path });
+    app.server.get('/obr-checkin-desafio',    auth, function (req, res) {
+      return res.render('obr-checkin-desafio', { path: req.route.path });
     })
 
     // Render Gerador de rounds screen
-    app.server.get('/obr-rounds',    auth, function (req, res) {
-      return res.render('obr-rounds', { path: req.route.path });
+    app.server.get('/obr-checkin-rounds',    auth, function (req, res) {
+      return res.render('obr-checkin-rounds', { path: req.route.path });
     })
 
     // Set home screen to show a big huge button to guide judges
-    app.server.get('/',     auth, function (req, res) {
-      return res.render('obr-home', { path: req.route.path, newestVersion: hasUpdate});
+    app.server.get('/obr-checkin-home',     auth, function (req, res) {
+      return res.render('obr-checkin-home', { path: req.route.path, newestVersion: hasUpdate});
     })
 
     // Init SyncModule
@@ -140,7 +140,7 @@ module.exports = {
       if (newestVersion != currentVersion) {
         hasUpdate = newestVersion
         console.log()
-        console.log('>>>>>>>>>> NOVO UPDATE PARA O tournamenter-obr')
+        console.log('>>>>>>>>>> NOVO UPDATE PARA O tournamenter-obr-checkin')
         console.log('>>>>>>>>>> Versão: '+newestVersion)
         console.log()
       }

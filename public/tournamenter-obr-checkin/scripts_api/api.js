@@ -77,12 +77,12 @@ var app = angular.module('app.api', [])
 
 .factory('ObrConfig', ['$resource', function ($resource) {
 
-  return $resource(TOURNAMENTER_URL + '/obr-sync', {}, {
+  return $resource(TOURNAMENTER_URL + '/obr-checkin-sync', {}, {
     save: {
-      url: TOURNAMENTER_URL + '/obr-sync',
+      url: TOURNAMENTER_URL + '/obr-checkin-sync',
     },
     lastSync: {
-      url: TOURNAMENTER_URL + '/obr-last-sync',
+      url: TOURNAMENTER_URL + '/obr-checkin-last-sync',
     }
   });
 

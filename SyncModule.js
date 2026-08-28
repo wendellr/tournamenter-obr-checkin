@@ -15,10 +15,10 @@ exports.default = {
  * Initializes deamon based on database configuration
  */
 exports.init = function (app) {
-  // Generate 'obr-sync' config in database
-  // app.models.Config.destroy({id: 'obr-sync'}, console.log)
-  app.models.Config.findOrCreate({id: 'obr-sync'}, _.defaults({
-    id:'obr-sync',
+  // Generate 'obr-checkin-sync' config in database
+  // app.models.Config.destroy({id: 'obr-checkin-sync'}, console.log)
+  app.models.Config.findOrCreate({id: 'obr-checkin-sync'}, _.defaults({
+    id:'obr-checkin-sync',
   }, exports.default), function (err, config){
     if (err) {
       return console.log('Falha ao criar configuração da `obr-sync`!');
@@ -29,7 +29,7 @@ exports.init = function (app) {
   })
 
   app.models.Config.findOrCreate(_.defaults({
-    id:'obr-last-sync',
+    id:'obr-checkin-last-sync',
   }, {}), function (err, config){
     if (err) {
       return console.log('Falha ao criar configuração da `obr-last-sync`!');
@@ -44,7 +44,7 @@ exports.init = function (app) {
 exports.updateConfig = function (req, res) {
 
   // Save to database
-  app.models.Config.findOne('obr-sync', function (err, model) {
+  app.models.Config.findOne('obr-checkin-sync', function (err, model) {
     var config = _.defaults(req.query, model, exports.default)
     config = _.pick(config, _.keys(exports.default))
     
@@ -68,7 +68,7 @@ exports.updateConfig = function (req, res) {
         return res.send('now')
       })
     } else {
-      app.models.Config.update('obr-sync', config, function (err, model){
+      app.models.Config.update('obr-checkin-sync', config, function (err, model){
         return res.send(_.pick(model[0], _.keys(exports.default)))
       })
     }
@@ -79,13 +79,13 @@ exports.updateConfig = function (req, res) {
  * Controls the menu badge with the Sync status
  */
 exports.statusMenu = {
-  path: '/obr-config',
+  path: '/obr-checkin-config',
   name: '',
   badge: 'Sync: Inicializando...'
 }
 
 exports.updateBadge = function () {
-  var badge = 'Sincronização OBR: '
+  var badge = 'Sincronização OBR Checkin: '
 
   if (!exports.config.sync) {
     badge += '<span style="color: #DDD"> 😴️ Desligado</span>'
@@ -102,7 +102,7 @@ exports.updateBadge = function () {
  * Returns the last successfull sync
  */
 exports.getLastSync = function getLastSync(req, res) {
-  app.models.Config.findOne('obr-last-sync', function (err, config) {
+  app.models.Config.findOne('obr-checkin-last-sync', function (err, config) {
     if (err) {
       return res.status(500).send(err)
     }
@@ -113,10 +113,10 @@ exports.getLastSync = function getLastSync(req, res) {
 }
 
 /*
- * Updates the timestamp of the last success on sync (config: obr-last-sync)
+ * Updates the timestamp of the last success on sync (config: obr-checkin-last-sync)
  */
 exports.didSync = function didSync() {
-  app.models.Config.update('obr-last-sync', {
+  app.models.Config.update('obr-checkin-last-sync', {
     value: Date.now()
   }, function (err, model) {
     console.log(TAG, 'didSync', err ? err : 'OK')

@@ -1,18 +1,18 @@
 {
   "name": "tournamenter-obr-checkin",
   "version": "2026.1.0",
-  "description": "Plugin OBR Checkin para o Tournamenter. Importa somente equipes presentes e envia resultados para o OBR Checkin.",
+  "description": "OBR Checkin para o Tournamenter. Importa somente equipes presentes e envia resultados para o OBR Checkin.",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://obr.ioda.com.br"
   },
-  "homepage": "https://github.com/ivanseidel/tournamenter-obr#readme",
+  "homepage": "https://github.com/wendellr/tournamenter-obr-checkin#readme",
   "bugs": {
     "url": "https://obr.ioda.com.br"
   },
   "scripts": {
-    "start": "./node_modules/.bin/http-server public/tournamenter-obr",
+    "start": "./node_modules/.bin/http-server public/tournamenter-obr-checkin",
     "assets": "bower install && bower-installer",
     "test": "node --test"
   },

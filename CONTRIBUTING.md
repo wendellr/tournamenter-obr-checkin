@@ -13,14 +13,14 @@ A OBR é uma competição dinâmica, e todos os anos pequenas alterações são 
 Portanto é necessário atualizar o plugin para cada nova edição da modalidade prática da OBR. O que pode ser feito através dos passos a seguir.
 
 ### Passos para atualização
-1. [Faça um fork](https://github.com/ivanseidel/tournamenter-obr/fork) do repositório e em seguida clone em seu computador. *dica: Você pode abrir uma issue no repositório avisando ao mantenedor e outros desenvolvedores que pretende atualizar o plugin para uma respectiva versão* 
-2. Copie a view da respectiva etapa do ano anterior, por exemplo, se você deseja atualizar o plugin para a etapa estadual em 2023, faça uma cópia do arquivo `public/tournamenter-obr/views/rescue_scorer_2022_regional.html` renomeando-o para `public/tournamenter-obr/views/rescue_scorer_2023_regional.html`
-3. Vá em `public/tournamenter-obr/scripts/scorers.js` e copie a `.factory` do ano anterior, por exemplo, `RescueScorer2022Regional`, então renomeei a sua cópia para `RescueScorer2023Regional`
+1. [Faça um fork](https://github.com/ivanseidel/tournamenter-obr-checkin/fork) do repositório e em seguida clone em seu computador. *dica: Você pode abrir uma issue no repositório avisando ao mantenedor e outros desenvolvedores que pretende atualizar o plugin para uma respectiva versão* 
+2. Copie a view da respectiva etapa do ano anterior, por exemplo, se você deseja atualizar o plugin para a etapa estadual em 2023, faça uma cópia do arquivo `public/tournamenter-obr-checkin/views/rescue_scorer_2022_regional.html` renomeando-o para `public/tournamenter-obr-checkin/views/rescue_scorer_2023_regional.html`
+3. Vá em `public/tournamenter-obr-checkin/scripts/scorers.js` e copie a `.factory` do ano anterior, por exemplo, `RescueScorer2022Regional`, então renomeei a sua cópia para `RescueScorer2023Regional`
 4. Atualize a versão do plugin, que segue o esquema de `[yyyy-[0, 1]-x]` onde `"yyyy"` é o ano da respectiva versão, por exemplo, 2023, `"[0, 1]"` deve ser 1 para estadual ou 2 para nacional, `"x"` atualizado a cada modificação pós lançamento. Atualize a versão dentro `package.json` e do html da view copiada no passo 2
-5. Atualize a variável global `GlobalScorerName` dentro do arquivo `public/tournamenter-obr/scripts/controllers.js` com o nome da factory criada no passo 3.
+5. Atualize a variável global `GlobalScorerName` dentro do arquivo `public/tournamenter-obr-checkin/scripts/controllers.js` com o nome da factory criada no passo 3.
 6. Atualize a tabela de pontuação das missões que tiveram suas pontuações atualizadas de acordo com o manual da obr. Esta tabela se encontra dentro da factory criada no passo 3 na variável `scorings`. Para atualizar, por exemplo, a pontuação do obstáculo de 10 para 15 pontos, basta modificar de `obstacles: [0,10]` para `obstacles: [0,15]`
 7. Adicione as novas missões se existirem, dentro da view criada e do scorer, seguindo como modelo as outras missões
-8. Faça um push dos seus commits para seu fork e [abra um pull request](https://github.com/ivanseidel/tournamenter-obr/compare)
+8. Faça um push dos seus commits para seu fork e [abra um pull request](https://github.com/ivanseidel/tournamenter-obr-checkin/compare)
 
 ### Considerações
 
@@ -30,10 +30,10 @@ ex: se uma missão pontua 35 pontos se concluída em qualquer tentativa deve ser
 
 ## 2 - Alterações gerais/Melhorias
 
-1. [Faça um fork](https://github.com/ivanseidel/tournamenter-obr/fork) do repositório e em seguida clone em seu computador.
+1. [Faça um fork](https://github.com/ivanseidel/tournamenter-obr-checkin/fork) do repositório e em seguida clone em seu computador.
 2. Abra uma issue discutindo sua ideia e proposta de melhoria
 3. Realize suas melhorias no código do plugin
-4. Faça um push dos seus commits para seu fork e [abra um pull request](https://github.com/ivanseidel/tournamenter-obr/compare)
+4. Faça um push dos seus commits para seu fork e [abra um pull request](https://github.com/ivanseidel/tournamenter-obr-checkin/compare)
 
 ## Testando localmente suas alterações
 
@@ -45,7 +45,7 @@ ex: se uma missão pontua 35 pontos se concluída em qualquer tentativa deve ser
 
 Procure o diretório base onde o Tournamenter está instalado, no meu caso está no caminho: `/Users/user.name/Library/Application Support/Tournamenter/`, é possível observar o caminho base no Tournamenter APP, ao abrir um servidor e observar o endereço do banco de dados, então basta remover o `nomeServer.pb` que você terá a url base.
 
-Em posse da URL base navegue até: `extensions -> node_modules -> tournamenter-obr`, então basta modificar também os arquivos aqui dentro desta pasta, adcionando suas alterações de código
+Em posse da URL base navegue até: `extensions -> node_modules -> tournamenter-obr-checkin`, então basta modificar também os arquivos aqui dentro desta pasta, adcionando suas alterações de código
 
 ## Recursos
 

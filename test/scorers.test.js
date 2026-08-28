@@ -25,7 +25,7 @@ function loadScorers() {
     console,
   };
 
-  const scorersPath = path.join(__dirname, '..', 'public', 'tournamenter-obr', 'scripts', 'scorers.js');
+  const scorersPath = path.join(__dirname, '..', 'public', 'tournamenter-obr-checkin', 'scripts', 'scorers.js');
   const source = fs.readFileSync(scorersPath, 'utf8');
   vm.runInNewContext(source, context, { filename: scorersPath });
 
@@ -46,7 +46,7 @@ test('registers the regional 2026 scorer with the expected base config', () => {
 });
 
 test('save score modal displays the scorer max time instead of a hardcoded value', () => {
-  const modalPath = path.join(__dirname, '..', 'public', 'tournamenter-obr', 'views', 'modal_select_team.html');
+  const modalPath = path.join(__dirname, '..', 'public', 'tournamenter-obr-checkin', 'views', 'modal_select_team.html');
   const source = fs.readFileSync(modalPath, 'utf8');
 
   assert.match(source, /\{\{selected\.maxTime\}\}/);
@@ -102,7 +102,7 @@ test('regional 2026 route markers allow extra attempts without tile points', () 
 });
 
 test('regional 2026 scorer view allows up to nine route marker attempts', () => {
-  const viewPath = path.join(__dirname, '..', 'public', 'tournamenter-obr', 'views', 'rescue_scorer_2026_regional.html');
+  const viewPath = path.join(__dirname, '..', 'public', 'tournamenter-obr-checkin', 'views', 'rescue_scorer_2026_regional.html');
   const source = fs.readFileSync(viewPath, 'utf8');
 
   assert.match(source, /\[0,1,2,3,4,5,6,7,8,9\]/);
