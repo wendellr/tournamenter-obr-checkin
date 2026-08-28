@@ -5,10 +5,11 @@ angular.module('app.importar', [])
   $scope.success = ''
   $scope.teams = Team.all()
   $scope.importEventToken = null
+  $scope.importScope = 'present'
   $scope.teamsToImport = null
   $scope.importLoadError = ''
 
-  $scope.$watch('importEventToken', function () {
+  $scope.$watchGroup(['importEventToken', 'importScope'], function () {
     $scope.importLoadError = ''
     $scope.teamsToImport = null
 
@@ -16,7 +17,7 @@ angular.module('app.importar', [])
       return
     }
 
-    $scope.teamsToImport = ExternalTeamAPI.all({token: $scope.importEventToken}, function () {}, function (err) {
+    $scope.teamsToImport = ExternalTeamAPI.all({token: $scope.importEventToken, scope: $scope.importScope}, function () {}, function (err) {
       var detail = err && err.data && err.data.detail ? err.data.detail : 'Não foi possível carregar as equipes deste token.'
       $scope.importLoadError = detail
     })
@@ -32,7 +33,7 @@ angular.module('app.importar', [])
     $scope.actions = null
 
     if (!$scope.teamsToImport || !$scope.teamsToImport.teams) {
-      $scope.error = 'Informe um token válido e aguarde carregar as equipes presentes.'
+      $scope.error = 'Informe um token válido e aguarde carregar as equipes.'
       return
     }
 

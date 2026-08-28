@@ -18,7 +18,7 @@ var app = angular.module('app.api', [])
 
 .factory('ExternalTeamAPI', ['$resource', function ($resource) {
 
-  return $resource(EXTERNAL_API_BASE + EXTERNAL_API_TEAMS, {token: '@token'}, {
+  return $resource(EXTERNAL_API_BASE + EXTERNAL_API_TEAMS, {token: '@token', scope: '@scope'}, {
     all: {
       url: EXTERNAL_API_BASE + EXTERNAL_API_TEAMS,// + '/:event',
     },

@@ -35,7 +35,7 @@
       <hr/>
       <p>
         <small style="color: rgba(0,0,0,0.6);">
-          Importe para o Tournamenter somente as equipes que já tiveram presença confirmada no OBR Checkin.
+          Importe para o Tournamenter as equipes da modalidade usando os dados cadastrados no OBR Checkin.
         </small>
       <p>
 
@@ -50,18 +50,29 @@
           <input class="form-control" type="text" ng-model="importEventToken">
         </div>
 
+        <div class="col-md-6 col-lg-12" style="margin-top: 8px;">
+          <label class="radio-inline">
+            <input type="radio" ng-model="importScope" value="present">
+            Somente presentes
+          </label>
+          <label class="radio-inline">
+            <input type="radio" ng-model="importScope" value="all">
+            Todas as equipes
+          </label>
+        </div>
+
         <div class="col-md-6" style="margin-top: 8px;">
           <span
             ng-show="teamsToImport.$resolved && !importLoadError && teamsToImport.teams.length" 
             class="label label-success"
             style="font-size: 16px;">
-              {{teamsToImport.teams.length}} equipes presentes
+              {{teamsToImport.teams.length}} equipes carregadas
           </span>
           <span
             ng-show="teamsToImport.$resolved && !importLoadError && !teamsToImport.teams.length" 
             class="label label-default"
             style="font-size: 16px;">
-              Nenhuma equipe presente
+              Nenhuma equipe encontrada
           </span>
           <span
             ng-show="teamsToImport.$resolved && importLoadError" 
