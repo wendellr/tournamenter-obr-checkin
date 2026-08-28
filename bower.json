@@ -1,7 +1,7 @@
 {
   "name": "tournamenter-obr-checkin",
-  "description": "Tournamenter scorer app for OBR",
-  "version": "1.0.0",
+  "description": "Plugin complementar para integrar o Tournamenter ao OBR Checkin",
+  "version": "2026.1.2",
   "authors": [
     "Ivan Seidel <ivan@tendadigital.net>"
   ],
