@@ -13,11 +13,13 @@ angular.module('app.importar', [])
     $scope.importLoadError = ''
     $scope.teamsToImport = null
 
-    if (!$scope.importEventToken) {
+    var importEventToken = ($scope.importEventToken || '').trim()
+    if (!importEventToken) {
       return
     }
+    $scope.importEventToken = importEventToken
 
-    $scope.teamsToImport = ExternalTeamAPI.all({token: $scope.importEventToken, scope: $scope.importScope}, function () {}, function (err) {
+    $scope.teamsToImport = ExternalTeamAPI.all({token: importEventToken, scope: $scope.importScope}, function () {}, function (err) {
       var detail = err && err.data && err.data.detail ? err.data.detail : 'Não foi possível carregar as equipes deste token.'
       $scope.importLoadError = detail
     })
@@ -44,7 +46,7 @@ angular.module('app.importar', [])
       // Generate commits
       const lastDigitMatch = $scope.teamsToImport && $scope.teamsToImport.name && $scope.teamsToImport.name.join(' ').split('').reverse().join('').match(/(\d)/);
       const lastDigit = lastDigitMatch ? lastDigitMatch[1] : "?";
-      $scope.actions = getCommits($scope.teams, $scope.teamsToImport.teams,  lastDigit, $scope.importEventToken, $scope.teamsToImport.id)
+      $scope.actions = getCommits($scope.teams, $scope.teamsToImport.teams,  lastDigit, ($scope.importEventToken || '').trim(), $scope.teamsToImport.id)
       $scope.actionsStats = _.countBy($scope.actions, 'action')
 
       // Show message

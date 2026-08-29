@@ -1,6 +1,6 @@
 {
   "name": "tournamenter-obr-checkin",
-  "version": "2026.1.6",
+  "version": "2026.1.7",
   "description": "Plugin complementar para integrar o Tournamenter ao OBR Checkin.",
   "main": "index.js",
   "repository": {
